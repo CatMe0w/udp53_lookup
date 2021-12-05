@@ -1,6 +1,6 @@
 [package]
 name = "udp53_lookup"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["CatMe0w <catme0w@live.cn>"]
 edition = "2021"
 

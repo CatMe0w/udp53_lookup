@@ -24,12 +24,12 @@ jobs:
           args: --release --target x86_64-unknown-linux-musl
           use-cross: true
 
-      - run: mv target/x86_64-unknown-linux-musl/release/${{github.repository}} target/x86_64-unknown-linux-musl/release/${{github.repository}}-linux-x86_64
+      - run: mv target/x86_64-unknown-linux-musl/release/${{github.event.repository.name}} target/x86_64-unknown-linux-musl/release/${{github.event.repository.name}}-linux-x86_64
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: target/x86_64-unknown-linux-musl/release/${{github.repository}}-linux-x86_64
+          files: target/x86_64-unknown-linux-musl/release/${{github.event.repository.name}}-linux-x86_64
 
   macos-x86_64:
     runs-on: macos-latest
@@ -49,12 +49,12 @@ jobs:
           args: --release
           use-cross: true
 
-      - run: mv target/release/${{github.repository}} target/release/${{github.repository}}-macos-x86_64
+      - run: mv target/release/${{github.event.repository.name}} target/release/${{github.event.repository.name}}-macos-x86_64
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: target/release/${{github.repository}}-macos-x86_64
+          files: target/release/${{github.event.repository.name}}-macos-x86_64
 
   windows-x86_64:
     runs-on: windows-latest
@@ -76,9 +76,9 @@ jobs:
         env:
           RUSTFLAGS: '-Ctarget-feature=+crt-static'
 
-      - run: Rename-Item target/release/${{github.repository}}.exe ${{github.repository}}-windows-x86_64.exe
+      - run: Rename-Item target/release/${{github.event.repository.name}}.exe ${{github.event.repository.name}}-windows-x86_64.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: target/release/${{github.repository}}-windows-x86_64.exe
+          files: target/release/${{github.event.repository.name}}-windows-x86_64.exe
